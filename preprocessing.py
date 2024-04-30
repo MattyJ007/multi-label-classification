@@ -6,15 +6,20 @@ nltk.download('stopwords')
 nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
- 
+
 stop_words = set(stopwords.words('english'))
 
 def normaliseImage(imageId):
   print(imageId)
   # Save new JPG to processed-data directory
 
-def oneHotEncodeLabel():
-   return []
+def oneHotEncodeLabel(labels):
+  classes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  intLabels = [int(label) for label in labels.split(" ")]
+  for label in intLabels:
+     classes[label - 1] = 1
+  return classes
+     
 
 def tokenise(caption):
       # Replace non-alphabetic characters with single whitespace
