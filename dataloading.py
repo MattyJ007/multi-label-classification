@@ -13,7 +13,7 @@ print(df.head(10))
 1. Access subset of training data and loop through each row
 2. Find largest images portrait and landscape - resize all images to same.
 3. Greyscale than normalise (pixel values between 0 - 1)
-4. One hot encode labels
+4. One hot encode labels + check label distribution within training set
 5. Preprocess captions - remove stop words + lowercasing + tokenise
 6. Visualise the data at the different stages
 7. Build model with PyTorch
@@ -23,4 +23,8 @@ print(df.head(10))
  - cnn layers
  - preprocessing
  - Low rank adaption + parameter efficient fine tuning
+'''
+
+'''
+Freeze 70% of the resnet18 first layers. Reduce output to our label output size. Retrain the output layers.
 '''
