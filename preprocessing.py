@@ -37,8 +37,8 @@ with open(FILENAME) as file:
   df = pd.read_csv(StringIO(''.join(lines)), escapechar="/")
 
 for row in df.itertuples():
-    # df.at[row.Index, 'ImageID'] = tokenise(row.ImageID)
-    # df.at[row.Index, 'Labels'] = tokenise(row.Labels)
+    df.at[row.Index, 'ImageID'] = normaliseImage(row.ImageID)
+    df.at[row.Index, 'Labels'] = oneHotEncodeLabel(row.Labels)
     df.at[row.Index, 'Caption'] = tokenise(row.Caption)
 
 df.to_csv('processed-data/train.csv', index=False)
