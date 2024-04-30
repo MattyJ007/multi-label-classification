@@ -6,8 +6,20 @@ nltk.download('stopwords')
 nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
- 
+
 stop_words = set(stopwords.words('english'))
+
+def normaliseImage(imageId):
+  print(imageId)
+  # Save new JPG to processed-data directory
+
+def oneHotEncodeLabel(labels):
+  classes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  intLabels = [int(label) for label in labels.split(" ")]
+  for label in intLabels:
+     classes[label - 1] = 1
+  return classes
+     
 
 def tokenise(caption):
       # Replace non-alphabetic characters with single whitespace
@@ -29,12 +41,9 @@ with open(FILENAME) as file:
   lines = [re.sub(r'([^,])"(\s*[^\n])', r'\1/"\2', line) for line in file]
   df = pd.read_csv(StringIO(''.join(lines)), escapechar="/")
 
-test = df.head()
-for row in test.itertuples():
-  print(test.at[row.Index, 'Labels'])
-  print( df["rnti"].str.split(",").apply(lambda x: [int(i, 16) for i in x]) )
-# for row in df.itertuples():
-#     df.at[row.Index, 'Caption'] = tokenise(row.Caption)
-    
+for row in df.itertuples():
+    df.at[row.Index, 'ImageID'] = normaliseImage(row.ImageID)
+    df.at[row.Index, 'Labels'] = oneHotEncodeLabel(row.Labels)
+    df.at[row.Index, 'Caption'] = tokenise(row.Caption)
 
-# df.to_csv('processed-data/train.csv', index=False)
+df.to_csv('processed-data/train.csv', index=False)
