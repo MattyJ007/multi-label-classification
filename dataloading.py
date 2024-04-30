@@ -23,6 +23,7 @@ print(df.head(10))
  - cnn layers
  - preprocessing
  - Low rank adaption + parameter efficient fine tuning
+ - Split image to increase training sets
 '''
 
 '''

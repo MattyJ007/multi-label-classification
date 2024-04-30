@@ -9,6 +9,13 @@ from nltk.tokenize import word_tokenize
  
 stop_words = set(stopwords.words('english'))
 
+def normaliseImage(imageId):
+  print(imageId)
+  # Save new JPG to processed-data directory
+
+def oneHotEncodeLabel():
+   return []
+
 def tokenise(caption):
       # Replace non-alphabetic characters with single whitespace
     caption = re.sub(r'[^a-zA-Z\s]', ' ', caption.lower())
@@ -29,12 +36,9 @@ with open(FILENAME) as file:
   lines = [re.sub(r'([^,])"(\s*[^\n])', r'\1/"\2', line) for line in file]
   df = pd.read_csv(StringIO(''.join(lines)), escapechar="/")
 
-test = df.head()
-for row in test.itertuples():
-  print(test.at[row.Index, 'Labels'])
-  print( df["rnti"].str.split(",").apply(lambda x: [int(i, 16) for i in x]) )
-# for row in df.itertuples():
-#     df.at[row.Index, 'Caption'] = tokenise(row.Caption)
-    
+for row in df.itertuples():
+    # df.at[row.Index, 'ImageID'] = tokenise(row.ImageID)
+    # df.at[row.Index, 'Labels'] = tokenise(row.Labels)
+    df.at[row.Index, 'Caption'] = tokenise(row.Caption)
 
-# df.to_csv('processed-data/train.csv', index=False)
+df.to_csv('processed-data/train.csv', index=False)
