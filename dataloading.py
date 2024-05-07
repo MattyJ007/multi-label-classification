@@ -19,14 +19,19 @@ Done
 
 To Do
 6. Visualise the data at the different stages
+ - Number of labels per image distribution
+ - Count caption dataset size (lemma vs stem + together)
 7. Explore new models proposed in tute
-7. Build model with PyTorch - see if papers have pretrained models available (DEit, ViT, etc.) (maybe check out other multilabel models) (motivation for pretrained model - some of our classes have very few examples - training from scratch would give very poor performance)
+ - ViT, DeiT, YOLO, CLIP
+ - Or ResNet + LSTM?
+7. Build models with PyTorch - see if papers have pretrained models available (DEit, ViT, etc.) (maybe check out other multilabel models) (motivation for pretrained model - some of our classes have very few examples - training from scratch would give very poor performance)
    - Use untrained architecture
    - use pretrained architecture
    - (optional) Map pretrained model classes to our classes and check accuracy - play around with whether pretrained model can do multi label
    - pretrained language model
 8. Save model to file
 9. Add F1 score
+ - check which labels have the poorest prediction rate (perhaps add extra training examples for poor predictors)
 10. Hyperparameter tuning
 11. Ablation tests based on above baselines
 - baseline with and without pretraining
