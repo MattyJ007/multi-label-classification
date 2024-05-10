@@ -4,8 +4,14 @@ from io import StringIO
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+
+lemma = nltk.wordnet.WordNetLemmatizer()
+
+ps = PorterStemmer()
 
 stop_words = set(stopwords.words('english'))
 
@@ -28,6 +34,10 @@ def tokenise(caption):
     caption = re.sub(r"\s+", " ", caption)
     # Remove new leading and trailing whitespace
     caption = caption.strip()
+    # Apply stemmer to each remaining word in sentence
+    caption = lemma.lemmatize(caption)
+    caption = ps.stem(caption)
+
     # Tokenize
     word_tokens = word_tokenize(caption)
     # Remove stop words
@@ -42,8 +52,8 @@ with open(FILENAME) as file:
   df = pd.read_csv(StringIO(''.join(lines)), escapechar="/")
 
 for row in df.itertuples():
-    df.at[row.Index, 'ImageID'] = normaliseImage(row.ImageID)
-    df.at[row.Index, 'Labels'] = oneHotEncodeLabel(row.Labels)
+    # df.at[row.Index, 'ImageID'] = normaliseImage(row.ImageID)
+    # df.at[row.Index, 'Labels'] = oneHotEncodeLabel(row.Labels)
     df.at[row.Index, 'Caption'] = tokenise(row.Caption)
 
 df.to_csv('processed-data/train.csv', index=False)
