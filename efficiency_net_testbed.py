@@ -25,12 +25,12 @@ def read_df(filepath):
     df = pd.read_csv(StringIO(''.join(lines)), escapechar="/")
   return df
 
-DATA_BASE_PATH = "./multi-label-classification/data/images/"#/content/drive/MyDrive/DeepLA2/images/"
+DATA_BASE_PATH = ".//data/images/"#/content/drive/MyDrive/DeepLA2/images/"
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
 # Load data
-train_df = read_df("./multi-label-classification/data/" + 'train.csv')#[:1122]
+train_df = read_df("./data/" + 'train.csv')#[:1122]
 
 for idx, row in train_df.iterrows():
   new_row = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -192,7 +192,7 @@ model.to(device)
 num_epochs = 10
 last_val_loss = 100.0
 val_accuracy = 0.0
-with open("/home/adnlp-server/Desktop/eoin/multi-label-classification/"+'training_metrics.txt', 'w') as f:
+with open('training_metrics.txt', 'w') as f:
     for epoch in tqdm(range(num_epochs), desc="Training Epochs"):
         train_loss, train_precision, train_recall, train_f1, train_accuracy = train_epoch(model, train_loader, loss_fn, optimizer, device)
         val_loss, val_precision, val_recall, val_f1, val_accuracy = evaluate(model, test_loader, loss_fn, device)
