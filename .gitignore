@@ -1,3 +1,4 @@
 yolov8s.pt
 predictions.json
 predictions/07*
+lightning_logs/
