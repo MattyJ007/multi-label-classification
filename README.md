@@ -1,14 +1,13 @@
 # Multilabel Classification
 
-## Done
+Exploration of techniques to solve a multi-label classification problem
+
+## Task Breakdown
 1. Access subset of training data and loop through each row
 1. Find largest images portrait and landscape - resize all images to same.
 1. Greyscale than normalise (pixel values between 0 - 1)
 1. One hot encode labels + check label distribution within training set
 1. Preprocess captions - remove stop words + lowercasing + tokenise
-
-## TODO
-
 1. Visualise the data at the different stages
   - Number of labels per image distribution
   - Count caption dataset size (lemma vs stem + together)
