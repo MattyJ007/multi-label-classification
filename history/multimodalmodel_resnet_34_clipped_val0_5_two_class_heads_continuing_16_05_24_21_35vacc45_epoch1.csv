@@ -1,0 +1,2 @@
+epoch,train_loss,val_loss,val_accuracy,val_f1_score
+1,0.40378675750801873,0.202127339442571,0.453,0.5975103734439834
